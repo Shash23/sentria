@@ -1,0 +1,10 @@
+fastapi
+langchain
+openai
+qdrant
+weaviate
+numpy
+pandas
+scikit-learn
+transformers
+torch

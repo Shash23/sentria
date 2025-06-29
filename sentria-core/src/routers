@@ -1,0 +1,13 @@
+# FILE: /sentria/sentria-core/src/routers/__init__.py
+# This file is intentionally left blank.
+
+# FILE: /sentria/sentria-core/src/routers/api.py
+from fastapi import APIRouter
+from . import example_router  # Import your routers here
+
+router = APIRouter()
+
+# Include your routers
+router.include_router(example_router.router, prefix="/example", tags=["example"])
+
+# Add more routers as needed
