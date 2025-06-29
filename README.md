@@ -182,5 +182,5 @@ TBD — private for now. Open-core or MIT candidate in future.
 
 ## Maintainers
 
-Lead Architect: Shashwat Ghevde, MS Data Science  
+Lead Architect: Shashwat Ghevde
 Contributors: Open to collaborators post-MVP
