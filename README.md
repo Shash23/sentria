@@ -1,40 +1,79 @@
 ## Sentria
 
-Sentria is the AI FinOps analyst for engineering teams. It does not just say if your application is broken; it tells you where you are wasting money.
+Show estimated cloud cost impact in GitHub pull requests.
 
-# Problem
-For growing tech companies, the cloud bill is a blackbox. Engineers commonly deploy code and spin resources to improve performance and ship features, but are blind to the cost implications of their decisions. Observability platforms like Datadog can tell them if a service is slow but not that the fix they implemented increased their AWS bill by 30%. Companies either have to hire FinOps teams or deal with massive amounts of data regarding optimizing their cloud spend.
+Sentria shows engineers the cloud cost impact of their code changes directly in pull requests.
 
-# Solution
+When you open or merge a PR, Sentria analyzes the change and comments with the expected impact on your cloud bill before the cost reaches production.
 
-Sentria is an AI platform that connects engineering telemetry to business outcomes. It allows engineers to understand and optimize their costs directly within their workflow. By integrating observability platforms (ie DataDog/Prometheus) and cloud billing providers (AWS Cost Explorer, GCP Billing), Sentria provides actionable financial insights. 
+---
 
-# How it Works
+## Problem
 
-1. **Unified Data Ingestion**: Sentria connects to your existing tools. It pulls telemetries (metrics, traces, and logs) from your observability stack and correlates them with cost data from your cloud provider. 
+For growing tech companies, cloud costs are opaque and reactive.
 
-2. **Proactive Cost Insights**: Sentria's AI proactively analyzes this combined data to find waste. It can send alerts directly to Slack or MS Teams. 
+Engineers ship code to improve performance or add features, but rarely see the cost implications of those changes until weeks later when the AWS bill arrives. Observability tools like Datadog can tell you when a service is slow or erroring, but they cannot tell you that a specific code change increased infrastructure costs by 30 percent.
 
-Example:
-- "Alert: The user-profile-service is overprovisioned. It's running at 15% CPU utilization during peak hours. Downsizing the instance type could save ~$420/month with no performance impact."
+As a result, teams either:
+- Discover cost regressions too late, or
+- Rely on manual FinOps analysis that is slow and disconnected from engineering workflows.
 
-- "Insight: Your latest deployment, v2.5.1, increased Redis commands by 300%, adding an estimated ~$600/month to your cache costs. Was this intended?"
+---
 
-3. **Natural Language Query for FinOps**: Engineers can ask questions like:
+## Solution
 
-- "What's our most expensive API endpoint per customer
-- "Show me the cost impact of the code deployed last Tuesday"
-- Which of our tenants is costing us the most in database resouces?"
+Sentria brings cost awareness into the code review process.
 
-# Target Market
+By integrating with your Git provider, observability stack, and cloud billing data, Sentria attributes cloud cost changes to specific services and deployments and surfaces that information directly in pull requests.
 
-Small to mid-sized companies (10-250 employees) with significant cloud spend ($10k+ / month) that are too small for dedicated FinOps teams. The client is the CTO or VP of Engineering who is accountable for the cloud budget. 
+Engineers can see the financial impact of a change before it is merged, making cost a first-class signal alongside performance and correctness.
 
-# Key Differentiators
+---
 
-- **We sell a specific outcome**: cost savings. Our entire product is built to deliver a clear ROI.
-- **Built for Engineers**: Traditional cost tools are for finance departments. Sentria is built for engineers who build the applications and provision resources to give them context to make cost-aware decisions. 
-- **Focused Market**: By specializing in the niche of AI-powered cost optimization, we can build a better, more focused product than the general-purpose AI assistants from larger platforms. 
+## How It Works
 
-# Future Steps
-- Expand into other outcome-driven analyses like performances or security
+1. **Pull Request Analysis**  
+   Sentria monitors pull requests and detects changes that may affect infrastructure usage, such as scaling parameters, queries, caching behavior, or service configuration.
+
+2. **Cost Attribution**  
+   After deployment, Sentria correlates service-level metrics such as CPU, memory, request volume, and cache usage with cloud billing data to attribute cost changes to the affected services and deployments.
+
+3. **PR Feedback**  
+   Sentria posts a comment directly on the pull request with a clear cost summary.
+
+   Example:
+   > This change is estimated to increase Redis usage by approximately 40 percent, adding an estimated $600 per month.  
+   > Primary driver: increased cache writes in `user-profile-service`.
+
+   Or:
+   > No significant cost impact detected. Resource utilization remains within baseline.
+
+---
+
+## Target Users
+
+Sentria is built for engineering teams at small to mid-sized companies with meaningful cloud spend of $10,000 or more per month that do not have a dedicated FinOps team.
+
+The primary buyer is the CTO or VP of Engineering, while the daily users are engineers and tech leads reviewing pull requests.
+
+---
+
+## Why Sentria
+
+- **Cost awareness before merge**  
+  Most tools explain costs after the money is spent. Sentria helps teams prevent unnecessary spend before it reaches production.
+
+- **Built for engineers**  
+  Sentria lives in pull requests, not finance dashboards. Engineers get cost context where decisions are made.
+
+- **Clear ROI**  
+  Teams pay for Sentria because it helps them avoid costly regressions and wasted infrastructure spend.
+
+---
+
+## Roadmap
+
+Future capabilities include:
+- Cost alerts for merged deployments
+- Deeper attribution for multi-tenant systems
+- Expansion into performance and reliability regressions tied to business impact
