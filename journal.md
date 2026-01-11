@@ -3,4 +3,7 @@
 
 Before anything, 
 
-2. make an estimation on the 
+2. make an estimation on the
+
+
+dick dick dick dick
